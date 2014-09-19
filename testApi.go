@@ -9,7 +9,10 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"time"
 )
+
+var timeout = time.Duration(5) * time.Second
 
 func main() {
 	key := "ID#Mi*eO(32"
@@ -38,7 +41,7 @@ func main() {
 	url := fmt.Sprintf("http://192.168.51.128:8877/api/%s", b_data)
 
 	//http
-	client := &http.Client{}
+	client := &http.Client{Timeout: timeout}
 	request, _ := http.NewRequest("POST", url, nil)
 
 	request.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*;q=0.8")
