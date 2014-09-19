@@ -15,7 +15,7 @@ func main() {
 	key := "ID#Mi*eO(32"
 
 	data := make(map[string]interface{})
-	data["c"] = 1
+	data["c"] = 2
 	data["p"] = map[string]string{"Mac": "C8-1F-66-1E-FF-E4", "DeviceType": "abc"}
 	data["u"] = "-1"
 	data["t"] = 1410937034
@@ -47,7 +47,11 @@ func main() {
 	request.Header.Set("Cache-Control", "max-age=0")
 	request.Header.Set("Connection", "keep-alive")
 
-	response, _ := client.Do(request)
+	response, err := client.Do(request)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
 	if response.StatusCode == 200 {
 		defer response.Body.Close()
 		body, _ := ioutil.ReadAll(response.Body)
@@ -57,7 +61,5 @@ func main() {
 			fmt.Println("Error: ", err)
 		}
 		fmt.Println(string(j_returnData))
-	} else {
-		fmt.Printf("--------------%#v", response)
 	}
 }
