@@ -1,0 +1,3 @@
+增加结构体方法的时候 为什么要加 * 指针 不加的话 有什么区别
+
+"game/modules/middleware/binding"
