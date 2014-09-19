@@ -18,8 +18,8 @@ func main() {
 	key := "ID#Mi*eO(32"
 
 	data := make(map[string]interface{})
-	data["c"] = 2
-	data["p"] = map[string]string{"Mac": "C8-1F-66-1E-FF-E4", "DeviceType": "abc"}
+	data["c"] = 1
+	data["p"] = map[string]string{"Mac": "C8-1F-66-1E-FF-E4a", "DeviceType": "abc"}
 	data["u"] = "-1"
 	data["t"] = 1410937034
 
@@ -32,7 +32,8 @@ func main() {
 	//json encode
 	j_data, err := json.Marshal(data)
 	if err != nil {
-		panic(err)
+		fmt.Println("Error: ", err)
+		return
 	}
 
 	//base64 encode
@@ -62,6 +63,7 @@ func main() {
 		j_returnData, err := base64.URLEncoding.DecodeString(returnData)
 		if err != nil {
 			fmt.Println("Error: ", err)
+			return
 		}
 		fmt.Println(string(j_returnData))
 	}
